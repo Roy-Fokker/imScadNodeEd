@@ -26,14 +26,6 @@ export namespace sdl
 	// Define SDL type with std::unique_ptr and custom deleter
 	using window_ptr = std::unique_ptr<SDL_Window, sdl_deleter<SDL_DestroyWindow>>;
 
-	struct window_desc_t
-	{
-		uint32_t width;
-		uint32_t height;
-		std::string_view title;
-		SDL_WindowFlags flags;
-	};
-
 	// Special deleter for gpu.
 	// it will release window on destruction
 	struct gpu_window_deleter
@@ -90,6 +82,15 @@ export namespace sdl
 		}
 	};
 
+	// Used to create SDL_Window using make_window function
+	struct window_desc_t
+	{
+		uint32_t width;
+		uint32_t height;
+		std::string_view title;
+		SDL_WindowFlags flags;
+	};
+
 	// Create SDL Window with described parameters
 	auto make_window(const window_desc_t &desc = {}) -> window_ptr
 	{
@@ -99,6 +100,7 @@ export namespace sdl
 		return window_ptr{ window };
 	}
 
+	// Wrap SDL's C-style enums into C++, totally unnecessary
 	enum class swapchain_mode : uint8_t
 	{
 		vsync     = SDL_GPU_PRESENTMODE_VSYNC,
@@ -111,6 +113,7 @@ export namespace sdl
 		return static_cast<SDL_GPUPresentMode>(mode);
 	}
 
+	// Wrap SDL's C-style enums into C++, totally unnecessary
 	enum class swapchain_composition : uint8_t
 	{
 		sdr                 = SDL_GPU_SWAPCHAINCOMPOSITION_SDR,
@@ -124,6 +127,7 @@ export namespace sdl
 		return static_cast<SDL_GPUSwapchainComposition>(composition);
 	}
 
+	// Used to create SDL_GPUDevice using make_gpu function
 	struct gpu_desc_t
 	{
 		SDL_GPUShaderFormat preferred_shader_format;
