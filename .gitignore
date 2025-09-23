@@ -8,22 +8,16 @@
 /vcpkg
 
 # Ignore cpm.cmake cached files
-/.cache/CPM/*
+/.cache/CPM
 
 # ignore vscode specific directory
-.vscode/*
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/c_cpp_properties.json
-!.vscode/settings.json
-*.code-workspace
+.vscode
 
 # ignore JetBrains IDEs
 .idea
 
 # Local History for Visual Studio Code
-.history/
+.history
 
 # Prerequisites
 *.d
@@ -61,8 +55,7 @@
 *.app
 
 # Visual Studio folders
-.vs/*
-!.vs/launch.vs.json
+.vs
 
 # other files/folders
 .DS_Store
