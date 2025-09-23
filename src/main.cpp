@@ -10,7 +10,7 @@ namespace
 	constexpr auto WND_WIDTH     = 800u;                                       // Window Width
 	constexpr auto ASPECT_RATIO  = 16.f / 9.f;                                 // Window's Aspect Ratio
 	constexpr auto WND_HEIGHT    = static_cast<int>(WND_WIDTH / ASPECT_RATIO); // Window Height based on Width and Aspect Ratio
-	constexpr auto SHADER_FORMAT = SDL_GPUShaderFormat{                        // Shader's will be using this format
+	constexpr auto SHADER_FORMAT = SDL_GPUShaderFormat{                        // Shaders will be using this format
 #ifdef SPIRV
 		                                                SDL_GPU_SHADERFORMAT_SPIRV
 #elifdef DXIL
