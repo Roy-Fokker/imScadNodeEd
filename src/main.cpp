@@ -20,10 +20,10 @@ namespace
 	};
 
 	// TODO: why does it need 'inline' keyword???
-	inline constexpr auto WND_TITLE = "OpenSCAD Node Editor"sv;
+	inline constexpr auto WND_TITLE = "OpenSCAD Node Editor"sv; // Window Title text
 }
 
-int main()
+auto main() -> int
 {
 	// object to init and quit SDL 3
 	auto sdl_o = sdl::sdl();
@@ -38,13 +38,9 @@ int main()
 	// get a smart pointer wrapped SDL_GPUDevice
 	auto gpu = sdl::make_gpu(wnd.get(), { SHADER_FORMAT });
 
-	// So i don't have to type .get() everywhere raw pointer is needed
-	auto pgpu = gpu.get();
-	auto pwnd = wnd.get();
+	auto app = project::application(wnd.get(), gpu.get());
 
-	auto app = project::application(pwnd, pgpu);
-
-	app.add_layer<project::test_layer>();
+	app.add_layer<project::fps_layer>();
 
 	app.run();
 

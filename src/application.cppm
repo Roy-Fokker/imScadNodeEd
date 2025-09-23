@@ -8,6 +8,7 @@ import imgui;
 
 export namespace project
 {
+	// Abstract class for each UI layer
 	class app_layer
 	{
 	protected:
@@ -19,13 +20,15 @@ export namespace project
 		virtual void update() = 0;
 	};
 
-	class test_layer : public app_layer
+	// Frame Rate Stats class
+	class fps_layer : public app_layer
 	{
 	public:
 		void update() override
 		{
-			ImGui::Begin("Stats");
-			ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / io->Framerate, io->Framerate);
+			constexpr auto msec = 1000.0f;
+			ImGui::Begin("Frame Rate");
+			ImGui::Text("%.3f ms/frame (%.1f FPS)", msec / io->Framerate, io->Framerate);
 			ImGui::End();
 		}
 	};
@@ -108,6 +111,7 @@ export namespace project
 			.store_op    = SDL_GPU_STOREOP_STORE,
 		};
 
-		std::vector<std::unique_ptr<app_layer>> layer_stack = {};
+		using app_layer_ptr                    = std::unique_ptr<app_layer>;
+		std::vector<app_layer_ptr> layer_stack = {};
 	};
 }
