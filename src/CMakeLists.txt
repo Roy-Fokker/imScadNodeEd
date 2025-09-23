@@ -12,11 +12,16 @@ add_executable(${PRJ_APP_NAME})
 # ensure it's Standard C++ 23
 target_compile_features(${PRJ_APP_NAME} PRIVATE cxx_std_23)
 
+# Shader Binary type
+# 	Implemented options, SPIRV or DXIL
+set(SHADER_FORMAT "DXIL")
+
 # set preprocessor defines
 target_compile_definitions(${PRJ_APP_NAME}
 	PRIVATE
 		$<$<CONFIG:Debug>:DEBUG>    # Ensure DEBUG macro is defined in debug build
 		${platform_definitions}     # Get platform specific definitions
+		${SHADER_FORMAT}            # Shader format we want to use for SDL GPU
 )
 
 # precompiled headers
@@ -34,6 +39,7 @@ target_sources(${PRJ_APP_NAME}
 
 	# magic encantations for C++ Modules Support in CMake
 	PRIVATE FILE_SET app_modules TYPE CXX_MODULES FILES
+		sdl.cppm
 )
 
 # libraries used by this application
