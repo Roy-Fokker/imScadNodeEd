@@ -43,10 +43,6 @@ export namespace imgui
 			ImGui_ImplSDLGPU3_NewFrame();
 			ImGui_ImplSDL3_NewFrame();
 			ImGui::NewFrame();
-
-			ImGui::Begin("Stats");
-			ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / io->Framerate, io->Framerate);
-			ImGui::End();
 		}
 
 		void draw(SDL_GPUCommandBuffer *cmd_buf, const SDL_GPUColorTargetInfo *color_target)

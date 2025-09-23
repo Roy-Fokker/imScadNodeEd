@@ -2,6 +2,7 @@ import std;
 
 import sdl;
 import imgui;
+import application;
 
 using namespace std::literals;
 
@@ -35,70 +36,17 @@ int main()
 	});
 
 	// get a smart pointer wrapped SDL_GPUDevice
-	auto gpu = sdl::make_gpu(wnd.get(),
-	                         {
-								 .preferred_shader_format = SHADER_FORMAT,
-							 });
-
-	// Basic state management variables
-	auto clear_color = SDL_FColor{ 0.2f, 0.2f, 0.4f, 1.0f };
-	auto quit        = false;
+	auto gpu = sdl::make_gpu(wnd.get(), { SHADER_FORMAT });
 
 	// So i don't have to type .get() everywhere raw pointer is needed
 	auto pgpu = gpu.get();
 	auto pwnd = wnd.get();
 
-	auto gui = imgui::imgui(pwnd, pgpu);
+	auto app = project::application(pwnd, pgpu);
 
-	// variable to be populated by SDL_PollEvent in event loop
-	auto evt = SDL_Event{};
-	while (not quit)
-	{
-		// Event Loop, see all SDL Events and act as necessary
-		while (SDL_PollEvent(&evt))
-		{
-			switch (evt.type)
-			{
-			case SDL_EVENT_QUIT:
-				quit = true;
-				break;
+	app.add_layer<project::test_layer>();
 
-			default:
-				break;
-			}
-		}
-
-		// Update imgui
-		gui.update();
-
-		// Draw using GPU
-		// Get a command buffer for this frame
-		auto cmd_buf = SDL_AcquireGPUCommandBuffer(pgpu);
-		assert(cmd_buf != nullptr and "Failed to acquire command buffer.");
-
-		// Get image to render to from swapchain
-		auto sc_img = sdl::next_swapchain_image(pwnd, cmd_buf);
-
-		// Color target properties
-		auto color_target = SDL_GPUColorTargetInfo{
-			.texture     = sc_img,
-			.clear_color = clear_color,
-			.load_op     = SDL_GPU_LOADOP_CLEAR,
-			.store_op    = SDL_GPU_STOREOP_STORE,
-		};
-
-		/* not needed as we are only using imgui
-		auto render_pass = SDL_BeginGPURenderPass(cmd_buf, &color_target, 1, nullptr);
-		// draw call stuff here
-		SDL_EndGPURenderPass(render_pass);
-		*/
-
-		// draw using imgui
-		gui.draw(cmd_buf, &color_target);
-
-		// Submit the command buffer to gpu
-		SDL_SubmitGPUCommandBuffer(cmd_buf);
-	}
+	app.run();
 
 	return 0;
 }
