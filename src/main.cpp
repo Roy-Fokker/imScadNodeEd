@@ -1,6 +1,7 @@
 import std;
 
 import sdl;
+import imgui;
 
 using namespace std::literals;
 
@@ -43,6 +44,8 @@ int main()
 	auto pgpu = gpu.get();
 	auto pwnd = wnd.get();
 
+	auto gui = imgui::imgui(pwnd, pgpu);
+
 	while (not quit)
 	{
 		while (SDL_PollEvent(&evt))
@@ -57,6 +60,9 @@ int main()
 				break;
 			}
 		}
+
+		// Update imgui
+		gui.update();
 
 		// Draw using GPU
 		auto cmd_buf = SDL_AcquireGPUCommandBuffer(pgpu);
@@ -74,6 +80,9 @@ int main()
 		auto render_pass = SDL_BeginGPURenderPass(cmd_buf, &color_target, 1, nullptr);
 		// draw call stuff here
 		SDL_EndGPURenderPass(render_pass);
+
+		gui.draw(cmd_buf, &color_target);
+
 		SDL_SubmitGPUCommandBuffer(cmd_buf);
 	}
 
