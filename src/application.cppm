@@ -26,6 +26,8 @@ export namespace project
 	public:
 		void update() override
 		{
+			ImGui::SetNextWindowFocus();
+
 			constexpr auto msec = 1000.0f;
 			ImGui::Begin("Frame Rate");
 			ImGui::Text("%.3f ms/frame (%.1f FPS)", msec / io->Framerate, io->Framerate);
