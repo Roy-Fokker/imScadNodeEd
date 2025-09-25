@@ -34,6 +34,7 @@ if (imgui_ADDED)
 	target_compile_definitions(imgui
 		PUBLIC
 			IMGUI_DISABLE_OBSOLETE_FUNCTIONS
+			IMGUI_DEFINE_MATH_OPERATORS
 	)
 
 	target_link_libraries(imgui
@@ -61,11 +62,6 @@ if (ImNodeFlow_ADDED)
 	target_include_directories(imnodeflow     # make sure include directory
 		PUBLIC                                # can be found by consuming 
 			${ImNodeFlow_SOURCE_DIR}/include  # project
-	)
-
-	target_compile_definitions(imnodeflow     # Odd that this is required?
-		PRIVATE                               # Will it conflict with other math
-			IMGUI_DEFINE_MATH_OPERATORS       # libraries
 	)
 
 	target_link_libraries(imnodeflow
