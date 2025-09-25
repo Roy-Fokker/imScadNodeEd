@@ -70,6 +70,8 @@ export namespace project
 				case SDL_EVENT_QUIT:
 					quit = true;
 					break;
+				default:
+					break;
 				}
 			}
 		}
