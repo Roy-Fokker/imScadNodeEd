@@ -7,7 +7,7 @@ CPMAddPackage("gh:libsdl-org/SDL#release-3.2.22")
 
 ## Dear ImGui Library
 CPMAddPackage(
-	URI "gh:ocornut/imgui#v1.92.2b"
+	URI "gh:ocornut/imgui#v1.92.3"
 	DOWNLOAD_ONLY TRUE              # don't build or do anything extra just download source
 )
 if (imgui_ADDED)
