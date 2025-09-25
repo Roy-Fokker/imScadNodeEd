@@ -43,3 +43,35 @@ if (imgui_ADDED)
 
 	message(STATUS "IMGUI: added library as imgui::imgui")
 endif()
+
+## ImNodeFlow Library
+CPMAddPackage(
+	URI "gh:Fattorino/ImNodeFlow#master"
+	DOWNLOAD_ONLY TRUE              # don't build or do anything extra just download source
+)
+if (ImNodeFlow_ADDED)
+	add_library(imnodeflow STATIC)
+	add_library(imgui::nodeflow ALIAS imnodeflow)
+
+	target_sources(imnodeflow                            # Source file for ImNodeFlow
+		PRIVATE
+			${ImNodeFlow_SOURCE_DIR}/src/ImNodeFlow.cpp
+	)
+
+	target_include_directories(imnodeflow     # make sure include directory
+		PUBLIC                                # can be found by consuming 
+			${ImNodeFlow_SOURCE_DIR}/include  # project
+	)
+
+	target_compile_definitions(imnodeflow     # Odd that this is required?
+		PRIVATE                               # Will it conflict with other math
+			IMGUI_DEFINE_MATH_OPERATORS       # libraries
+	)
+
+	target_link_libraries(imnodeflow
+		PRIVATE
+			imgui::imgui          # imgui is dependency
+	)
+
+	message(STATUS "ImNodeFlow: added library as imgui::nodeflow")
+endif()

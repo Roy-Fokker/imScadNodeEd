@@ -1,7 +1,7 @@
 # get platform specific configs
-if(MSVC)
+if (MSVC)
 	include(${CMAKE_MODULE_PATH}/Win32Presets.cmake)
-endif()
+endif ()
 
 # name of this application/library
 set(PRJ_APP_NAME "sned")
@@ -42,11 +42,13 @@ target_sources(${PRJ_APP_NAME}
 		sdl.cppm
 		imgui.cppm
 		application.cppm
+		nodes.cppm
 )
 
 # libraries used by this application
 target_link_libraries(${PRJ_APP_NAME}
 	PRIVATE
-		SDL3::SDL3   # SDL3 Library
-		imgui::imgui # Dear Imgui library
+		SDL3::SDL3      # SDL3 Library
+		imgui::imgui    # Dear Imgui library
+		imgui::nodeflow # ImNodeFlow library
 )
