@@ -3,6 +3,7 @@ import std;
 import sdl;
 import imgui;
 import application;
+import nodes;
 
 using namespace std::literals;
 
@@ -41,6 +42,7 @@ auto main() -> int
 	auto app = project::application(wnd.get(), gpu.get());
 
 	app.add_layer<project::fps_layer>();
+	app.add_layer<project::nodes_layer>();
 
 	app.run();
 
