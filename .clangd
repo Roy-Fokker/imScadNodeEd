@@ -1,0 +1,8 @@
+CompileFlags:
+  Add:
+    - -D__CLANGD__
+    - -std=c++23
+    - /std:c++latest
+  CompilationDatabase: builds/windows-default/
+Completion:
+  HeaderInsertion: Never

@@ -9,7 +9,7 @@
 *
 * List of includes blatantly copied from MSVC's STL Module File
 */
-#if __INTELLISENSE__
+#if __INTELLISENSE__ || __CLANGD__
 // "C++ library headers" [tab:headers.cpp]
 #include <algorithm>
 #if _HAS_STATIC_RTTI
