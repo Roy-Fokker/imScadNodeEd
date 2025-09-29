@@ -10,6 +10,7 @@
  * List of includes blatantly copied from MSVC's STL Module File
  */
 // IWYU pragma: begin_keep
+// IWYU pragma: begin_export
 #if __INTELLISENSE__ || __CLANGD__
 // "C++ library headers" [tab:headers.cpp]
 #include <algorithm>
@@ -137,4 +138,5 @@
 #include <cwctype>
 
 #endif
+// IWYU pragma: end_export
 // IWYU pragma: end_keep
