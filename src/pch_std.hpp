@@ -1,14 +1,15 @@
 ﻿#pragma once
 
 /*
-* Because Intellisense doesn't understand modules,
-* we need to create this hack, so intellisense will still provide useful 
-* completions, and not complain about std:: items constantly.
-* This will not remove spurious errors with import statements.
-* No choice but to live with those error squiggles.
-*
-* List of includes blatantly copied from MSVC's STL Module File
-*/
+ * Because Intellisense doesn't understand modules,
+ * we need to create this hack, so intellisense will still provide useful
+ * completions, and not complain about std:: items constantly.
+ * This will not remove spurious errors with import statements.
+ * No choice but to live with those error squiggles.
+ *
+ * List of includes blatantly copied from MSVC's STL Module File
+ */
+// IWYU pragma: begin_keep
 #if __INTELLISENSE__ || __CLANGD__
 // "C++ library headers" [tab:headers.cpp]
 #include <algorithm>
@@ -136,3 +137,4 @@
 #include <cwctype>
 
 #endif
+// IWYU pragma: end_keep
