@@ -20,6 +20,9 @@ export namespace project
 		virtual void update() = 0;
 	};
 
+	template <typename T_layer>
+	concept app_layer_base = std::is_base_of_v<app_layer, T_layer>;
+
 	// Frame Rate Stats class
 	class fps_layer : public app_layer
 	{
