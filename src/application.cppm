@@ -47,8 +47,7 @@ export namespace project
 		{
 		}
 
-		template <typename T_layer>
-			requires(std::is_base_of_v<app_layer, T_layer>)
+		template <app_layer_base T_layer>
 		void add_layer()
 		{
 			layer_stack.push_back(std::make_unique<T_layer>());
