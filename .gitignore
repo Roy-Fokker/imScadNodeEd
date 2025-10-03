@@ -9,6 +9,7 @@
 
 # Ignore cpm.cmake cached files
 /.cache/CPM
+/external
 
 # ignore vscode specific directory
 .vscode

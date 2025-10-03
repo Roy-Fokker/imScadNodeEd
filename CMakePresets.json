@@ -23,7 +23,7 @@
 			"hidden": true,
 			"description": "CPM.Cmake Configuration",
 			"cacheVariables": {
-				"CPM_SOURCE_CACHE": "${sourceDir}/.cache/CPM"
+				"CPM_SOURCE_CACHE": "${sourceDir}/external"
 			}
 		},
 		{
