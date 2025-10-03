@@ -3,7 +3,11 @@ include(${CMAKE_MODULE_PATH}/CPM.cmake)
 
 # Dependencies
 ## Simple Directmedia Library
-CPMAddPackage("gh:libsdl-org/SDL#release-3.2.22")
+CPMAddPackage(
+	URI "gh:libsdl-org/SDL#release-3.2.24"
+	OPTIONS
+		"SDL_TEST_LIBRARY OFF"      # Disable SDL Tests
+)
 
 ## Dear ImGui Library
 CPMAddPackage(
