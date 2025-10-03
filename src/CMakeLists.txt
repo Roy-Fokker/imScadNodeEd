@@ -44,6 +44,7 @@ target_sources(${PRJ_APP_NAME}
 		imgui.cppm
 		application.cppm
 		nodes.cppm
+		nodes_constants.cppm
 )
 
 # libraries used by this application

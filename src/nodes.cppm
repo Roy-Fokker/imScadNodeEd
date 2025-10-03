@@ -6,6 +6,8 @@ import std;
 import sdl;
 import application;
 
+export import :constants;
+
 export namespace project
 {
 	class simple_sum : public ImFlow::BaseNode
@@ -39,8 +41,11 @@ export namespace project
 	public:
 		nodes_layer()
 		{
-			editor_surface.addNode<simple_sum>({ 0, 0 });
-			editor_surface.addNode<simple_sum>({ 40, 40 });
+			using namespace nodes;
+
+			editor_surface.addNode<constants::pi_node>({ 20, 10 });
+			editor_surface.addNode<constants::phi_node>({ 20, 60 });
+			editor_surface.addNode<constants::exp_node>({ 20, 110 });
 		}
 
 		void update() override
