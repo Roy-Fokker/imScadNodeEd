@@ -45,6 +45,7 @@ target_sources(${PRJ_APP_NAME}
 		application.cppm
 		nodes.cppm
 		nodes_constants.cppm
+		nodes_operators.cppm
 )
 
 # libraries used by this application

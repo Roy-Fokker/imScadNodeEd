@@ -6,7 +6,9 @@ import std;
 import sdl;
 import application;
 
-export import :constants;
+// nodes are based on https://openscad.org/cheatsheet/index.html
+import :constants;
+import :operators;
 
 export namespace project
 {
@@ -46,6 +48,13 @@ export namespace project
 			editor_surface.addNode<constants::pi_node>({ 20, 10 });
 			editor_surface.addNode<constants::phi_node>({ 20, 60 });
 			editor_surface.addNode<constants::exp_node>({ 20, 110 });
+
+			editor_surface.addNode<operators::addition>({ 160, 10 });
+			editor_surface.addNode<operators::subtraction>({ 160, 80 });
+			editor_surface.addNode<operators::multiplication>({ 160, 150 });
+			editor_surface.addNode<operators::division>({ 160, 210 });
+			editor_surface.addNode<operators::modulo>({ 160, 280 });
+			editor_surface.addNode<operators::exponentiation>({ 160, 350 });
 		}
 
 		void update() override
