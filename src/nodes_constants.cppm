@@ -29,4 +29,28 @@ export namespace project::nodes::constants
 	using pi_node  = constant_node<std::numbers::pi_v<float>, "Pi">;
 	using phi_node = constant_node<std::numbers::phi_v<float>, "Phi">;
 	using exp_node = constant_node<std::numbers::e_v<float>, "e">;
+
+	class value_node : public ImFlow::BaseNode
+	{
+		float value = 0.f;
+
+	public:
+		value_node()
+		{
+			setTitle("Value");
+			setStyle(ImFlow::NodeStyle::cyan());
+
+			using ImFlow::BaseNode;
+			auto out_pin = addOUT<float>("Out", nullptr);
+			out_pin->behaviour([this] -> float {
+				return value;
+			});
+		}
+
+		void draw() override
+		{
+			ImGui::SetNextItemWidth(100.f);
+			ImGui::InputFloat("##Value", &value, 0.001f, 0.1f);
+		}
+	};
 }

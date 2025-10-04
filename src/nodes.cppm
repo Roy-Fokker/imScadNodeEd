@@ -48,6 +48,7 @@ export namespace project
 			editor_surface.addNode<constants::pi_node>({ 20, 10 });
 			editor_surface.addNode<constants::phi_node>({ 20, 60 });
 			editor_surface.addNode<constants::exp_node>({ 20, 110 });
+			editor_surface.addNode<constants::value_node>({ 20, 160 });
 
 			editor_surface.addNode<operators::addition>({ 160, 10 });
 			editor_surface.addNode<operators::subtraction>({ 160, 80 });
